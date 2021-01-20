@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Ketter</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <!-- conección con el tipo de fuente -->
+    <link  href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Source+Sans+Pro:ital@1&display=swap" rel="stylesheet">
+    <!-- conección con archivo .css -->
+    <!-- <link rel="stylesheet" href="estilos.css" /> -->
+    <!-- manipular el contenido dependiendo el ancho del dispositivo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  </head>
+  <style>
+    body {
+        margin: 0;
+      }
+/* iconos ------------------------------------------------------------------------------ */
+  @font-face {
+        font-family: 'icomoon';
+        src:    url('fonts/icomoon.eot?6s6d3k');
+        src:    url('/fonts/icomoon.eot?6s6d3k#iefix') format('embedded-opentype'),
+            url('fonts/icomoon.ttf?6s6d3k') format('truetype'),
+            url('fonts/icomoon.woff?6s6d3k') format('woff'),
+            url('fonts/icomoon.svg?6s6d3k#icomoon') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+  [class^="icon-"], [class*=" icon-"] {
+        /* use !important to prevent issues with browser extensions that change fonts */
+        font-family: 'icomoon' !important;
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+   .icon-cart:before {
+    content: "\e900";
+  }
+   .icon-credit-card:before {
+    content: "\e93f";
+    }
+   .icon-location2:before {
+    content: "\e948";
+  }
+   .icon-calendar:before {
+    content: "\e953";
+  }
+   .icon-user:before {
+    content: "\e971";
+  }
+   .icon-cerrar:before {
+    content: "\ea0f";
+  }
+   .icon-whatsapp:before {
+    content: "\ea93";
+  }
+  /* Boton de whatsapp----------------------------------------------------- */
+   #button-whatsapp {
+        cursor: pointer;
+        position: fixed;
+        right: 5px;
+        z-index: 2;
+        bottom: 8vh;
+      }
+   .social_link {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    margin: 18px 6px 0px 22px;
+   }
+   .social_link.whatsapp {
+         background-image: url('images/whatsapp.svg');
+         object-fit: cover;
+       }
+   /* header --------------------------------------------------------------- */
+   .header {
+     width: 100vw;
+     flex: 1;
+     height: 72px;
+     display: flex;
+     align-items: center;
+     justify-content: space-around;
+     position: fixed;
+     z-index: 2;
+     top: 0;
+     background-color: #a00d0b;
+   }
+   .header_menu {
+     padding-top: 1px;
+     font-size: 16px;
+   }
+   .header ul {
+     position: fixed;
+     flex-direction: column;
+     top: 0;
+     bottom: 0;
+     right: 0;
+     left: 80vw;
+     margin: 0;
+     padding-left: 0px;
+     display: none;
+     background-color: rgb(139, 0, 0, 0.3)
+    }
+   .header a {
+     text-decoration: none;
+     list-style: none;
+     padding: 12px 20px;
+     font-family: sans-serif;
+     font-size: 1rem;
+     color: white;
+     display: flex;
+    }
+   .header_menu_2.active ul {
+     display: flex;
+     justify-content: center;
+     list-style: none;
+     align-items: center;
+     flex-direction: column;
+    }
+   #logo {
+     width: 79px;
+     height: 79px;
+     left: 5vw;
+     display: flex;
+     flex-wrap: wrap;
+     position: fixed;
+     margin: 4px;
+     color: white;
+     font-size: 43px;
+     top: 1vh;
+    }
+   .burguer_button {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid white;
+      cursor: pointer;
+      color: white;
+      font-size: 26px;
+      padding: 2px;
+      position: fixed;
+      left: 88vw;
+      top: 2vh;
+      z-index: 2;
+    }
+   .iconos-menu {
+        color: white;
+        font-size: 5vh;
+        margin-bottom: 1rem;
+      }
+/* hero----------------------------------------------------------------- */
+   .hero_img {
+     width: 99vw;
+     height: 65vh;
+     margin-top: 72px;
+    }
+
+/* buscador--------------------------------------------------------------------- */
+   .input {
+      /* background-color: rgba(255,255,255,0.1); */
+    border: 2px solid white;
+    border-radius: 25px;
+    color: black;
+    font-family: 'Muli', sans-serif;
+    font-size: 16px;
+    height: 50px;
+    margin-bottom: 20px;
+    outline: none;
+    padding: 0px 20px;
+    width: 70%;
+    margin: 4% 10%;
+    }
+   .main {
+     align-items: center;
+     justify-content: space-between;
+     flex-direction: inherit;
+     border-radius: 0px 0px 0px 0px;
+     width: 70%;
+     display: flex;
+     margin-right: 13vw;
+    }
+   .main__title {
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      margin-top: 4rem;
+      }
+/* carrucel---------------------------------------------------------------- */
+   #item1{
+    margin-top: 3vh;
+    }
+   .categorias{
+    margin-left: 4vw;
+    color: #a00d0b;
+    font-family: sans-serif;
+    margin-top: 5%;
+    margin-bottom: 1%;
+   }
+   .carousel__container {
+     transition: 450ms -webkit-transform;
+     transition: 450ms transform;
+     transition: 450ms transform, 450ms -webkit-transform;
+     font-size: 0;
+     white-space: nowrap;
+     margin: 0px 0px;
+     padding-bottom: 10px;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     }
+   .carousel {
+     overflow: hidden;
+     position: relative;
+    }
+   .carousel-item__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10%;
+    }
+   .carousel-item {
+      height: 30vh;
+      width: 20vw;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-right: 10px;
+      display: inline-block;
+      cursor: pointer;
+      transition: 450ms all;
+      position: relative;
+      margin: 1%;
+      background-color: #dcdcdc29;
+    }
+    .descripción_productos p {
+      color: black;
+      font-size: 1vw;
+      display: flex;
+      justify-content: center;
+      font-family: sans-serif;
+    }
+    .descripción_productos a {
+      color: #a00d0b;
+      font-size: 1vw;;
+      display: flex;
+      justify-content: center;
+      font-family: sans-serif;
+      list-style: none;
+      text-decoration: none;
+    }
+
+          /* footer -------------------------------------------------------------- */
+    }
+/* footer -------------------------------------------------------------- */
+   .footer {
+    font-size: 19px;
+    display: flex;
+    height: 55px;
+    background-color: black;
+    justify-content: center;
+    color: white;
+    }
+   .footer a {
+     color: white;
+     text-decoration: none;
+   }
+   @media screen and (max-width:838px) {
+   #logo {
+    font-size: 2em;
+    left: 1vw;
+    }
+
+/* buscador @media screen and (max-width:838px) -------------------------------------------------------------------- */
+   .main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70%;
+    }
+   .main__title {
+      color: white;
+      font-size: 25px;
+      margin-bottom: 1rem;
+      margin-top: 4rem;
+      vertical-align: text-top;
+      }
+
+    }
+/* carusel --------------------------------------------------------------------------- */
+   /* .carousel {
+     overflow: scroll;
+     position: relative;
+   } */
+
+   @media screen and (max-width: 580px) {
+/* buscador -------------------------------------------------------------------- */
+   .main__description--title {
+        font-size: 30px;
+      }
+   .busqueda {
+       background-color: white;
+     }
+  /* header--------------------------------------------------------------------- */
+   .header_menu_a_2{
+      font-size: 32px;
+    }
+    #logo {
+     font-size: 1.5em;
+     left: 1vw;
+     }
+   #logo {
+    font-size: 1.7em;
+    left: 3vw;
+    top: 2.2vh;
+    }
+   .header a{
+      font-size: 1em;
+      color: white;
+    }
+   .header ul {
+     position: fixed;
+     flex-direction: column;
+     top: 72px;
+     bottom: 0;
+     right: 75vw;
+     left: 0;
+     margin: 0;
+     padding-left: 0px;
+     display: none;
+     background-color: rgb(139, 0, 0, 0.3)
+    }
+   .header_menu_2 ul li {
+      margin-bottom: 10%;
+      margin-top: 0;
+    }
+   .iconos-menu {
+       color: white;
+       font-size: 5vh;
+       margin-bottom: 2%;
+     }
+   .burguer_button {
+      left: 82vw;
+    }
+/* hero----------------------------------------------------------------- */
+   .hero_img {
+     width: 99vw;
+     height: 33vh;
+     margin: 72px 0px 10px;
+    }
+/* carusel --------------------------------------------------------------------------- */
+   #item1{
+    margin-top: 3vh;
+    }
+   .carousel-item {
+      transform-origin: none;
+      width: 110px;
+      height: 118px;
+      position: relative;
+      overflow: scroll;
+   }
+   .carousel {
+    position: relative;
+    overflow: scroll;
+   }
+   .carousel__container {
+      white-space: nowrap;
+      transition: 450ms transform, 450ms -webkit-transform;
+      display: block;
+    }
+
+ }
+  </style>
+  <body>
+    <header class="header" >
+       <div class="contenedor">
+         <span id="burguer-button" class="icon-user burguer_button"></span>
+         <figure >
+              <h1 id="logo">ketter</h1>
+           </figure>
+       </div>
+       <div class="contenedor">
+            <nav class="header_menu_2" id="menu">
+              <ul>
+                <span id="carritodecompras"class="icon-cart iconos-menu"></span>
+                <li>
+                  <a class="header_menu_a_2"href="Plazoleta.html">Carrito</a>
+                </li>
+                <span class="icon-credit-card iconos-menu"></span>
+                <li>
+                  <a class="header_menu_a_2" href="#nosotros">Metodos de pago</a>
+                </li>
+                <span class="icon-location2 iconos-menu"></span>
+                <li>
+                  <a class="header_menu_a_2" href="#productos">Ubicación</a>
+                </li>
+                 <span class="icon-calendar iconos-menu"></span>
+                 <li>
+                  <a class="header_menu_a_2" href="#contacto">Pedidos</a>
+                </li>
+              </ul>
+            </nav>
+       </div>
+       <div class="main">
+         <input type="text" class="input" placeholder="Buscar...">
+       </div>
+    </header>
+
+    <section class="hero" id="Inicio">
+      <div class="container">
+      <img class="hero_img"src="images/pexels-helena-lopes-708440.jpeg"alt="imagen principal del sitio">
+     </div>
+    </section>
+
+    <h2 id="item1" class="categorias">Ropa y accesorios</h2>
+
+    <section class="carousel">
+      <div class="carousel__container">
+        <div class="carousel-item">
+          <a href="Plazoleta.html"><img class="carousel-item__img" src="images/Ropa1.jpeg" alt="People"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="Plazoleta.html"><img class="carousel-item__img" src="images/Ropa2.jpeg" alt="People"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="Plazoleta.html"><img class="carousel-item__img" src="images/Ropa3.jpeg" alt="People"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="Plazoleta.html"><img class="carousel-item__img" src="images/Ropa4.jpeg" alt="People"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="Plazoleta.html"><img class="carousel-item__img" src="images/Ropa5.jpeg" alt="People"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="Plazoleta.html"><img class="carousel-item__img" src="images/Ropa6.jpeg" alt="People"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="Plazoleta.html"><img class="carousel-item__img" src="images/Ropa5.jpeg" alt="People"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="Plazoleta.html"><img class="carousel-item__img" src="images/Ropa6.jpeg" alt="People"></a>
+        </div>
+    </section>
+    <h2 class="categorias">Plazoleta de comidas</h2>
+    <section class="carousel">
+      <div class="carousel__container">
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/comida1.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/comida2.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/comida3.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/comida4.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/comida5.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/comida6.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/comida5.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/comida6.jpeg" alt="People">
+        </div>
+    </section>
+    <h2 class="categorias">Tecnologia</h2>
+    <section class="carousel">
+      <div class="carousel__container">
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/Tecnologia1.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/Tecnologia2.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/Tecnologia3.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/Tecnologia4.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/Tecnologia5.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/Tecnologia6.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/Tecnologia5.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/Tecnologia6.jpeg" alt="People">
+        </div>
+    </section>
+
+    <section class="bonton-whatsapp">
+       <a id="button-whatsapp" class="social_link whatsapp" href="https://wa.me/573058139553?text=Hola"></a>
+    </section>
+
+    <footer class="footer">
+      <div class="contenedor">
+        <!-- <p>Telefono: -->
+        <!-- <a id="Telefono" target="_blank" href="https://wa.me/573058139553?text=Hola">3058139553</a><p/> -->
+      </div>
+    </footer>
+
+    <script src="interactividad.js"></script>
+  </body>
+</html>

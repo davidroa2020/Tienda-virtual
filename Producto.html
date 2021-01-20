@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Ketter</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <!-- conección con el tipo de fuente -->
+    <link  href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Source+Sans+Pro:ital@1&display=swap" rel="stylesheet">
+    <!-- conección con archivo .css -->
+    <!-- <link rel="stylesheet" href="estilos.css" /> -->
+    <!-- manipular el contenido dependiendo el ancho del dispositivo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  </head>
+  <style>
+    body {
+        margin: 0;
+      }
+/* iconos ------------------------------------------------------------------------------ */
+  @font-face {
+        font-family: 'icomoon';
+        src:    url('fonts/icomoon.eot?6s6d3k');
+        src:    url('/fonts/icomoon.eot?6s6d3k#iefix') format('embedded-opentype'),
+            url('fonts/icomoon.ttf?6s6d3k') format('truetype'),
+            url('fonts/icomoon.woff?6s6d3k') format('woff'),
+            url('fonts/icomoon.svg?6s6d3k#icomoon') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+  [class^="icon-"], [class*=" icon-"] {
+        /* use !important to prevent issues with browser extensions that change fonts */
+        font-family: 'icomoon' !important;
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+   .icon-cart:before {
+    content: "\e900";
+  }
+   .icon-credit-card:before {
+    content: "\e93f";
+    }
+   .icon-location2:before {
+    content: "\e948";
+    }
+   .icon-calendar:before {
+    content: "\e953";
+   }
+   .icon-user:before {
+    content: "\e971";
+    }
+   .icon-cerrar:before {
+    content: "\ea0f";
+    }
+   .icon-whatsapp:before {
+    content: "\ea93";
+    }
+  /* Boton de whatsapp----------------------------------------------------- */
+   #button-whatsapp {
+     cursor: pointer;
+     position: fixed;
+     right: 5px;
+     z-index: 2;
+     bottom: 8vh;
+      }
+   .social_link {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    margin: 18px 6px 0px 22px;
+   }
+   .social_link.whatsapp {
+         background-image: url('images/whatsapp.svg');
+         object-fit: cover;
+       }
+   /* header --------------------------------------------------------------- */
+   .header {
+     width: 100vw;
+     flex: 1;
+     height: 72px;
+     display: flex;
+     align-items: center;
+     justify-content: space-around;
+     position: fixed;
+     z-index: 2;
+     top: 0;
+     background-color: #a00d0b;
+   }
+   .header_menu {
+     padding-top: 1px;
+     font-size: 16px;
+   }
+   .header ul {
+     position: fixed;
+     flex-direction: column;
+     top: 0;
+     bottom: 0;
+     right: 0;
+     left: 80vw;
+     margin: 0;
+     padding-left: 0px;
+     display: none;
+     background-color: rgb(139, 0, 0, 0.3)
+    }
+   .header a {
+     text-decoration: none;
+     list-style: none;
+     padding: 12px 20px;
+     font-family: sans-serif;
+     font-size: 1rem;
+     color: white;
+     display: flex;
+    }
+   .header_menu_2.active ul {
+     display: flex;
+     justify-content: center;
+     list-style: none;
+     align-items: center;
+     flex-direction: column;
+    }
+   #logo {
+     width: 79px;
+     height: 79px;
+     left: 5vw;
+     display: flex;
+     flex-wrap: wrap;
+     position: fixed;
+     margin: 4px;
+     color: white;
+     font-size: 43px;
+     top: 1vh;
+    }
+   .burguer_button {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid white;
+      cursor: pointer;
+      color: white;
+      font-size: 26px;
+      padding: 2px;
+      position: fixed;
+      left: 88vw;
+      top: 2vh;
+      z-index: 2;
+    }
+   .iconos-menu {
+        color: white;
+        font-size: 5vh;
+        margin-bottom: 1rem;
+      }
+/* buscador--------------------------------------------------------------------- */
+   .input {
+      /* background-color: rgba(255,255,255,0.1); */
+    border: 2px solid white;
+    border-radius: 25px;
+    color: black;
+    font-family: 'Muli', sans-serif;
+    font-size: 16px;
+    height: 50px;
+    margin-bottom: 20px;
+    outline: none;
+    padding: 0px 20px;
+    width: 70%;
+    margin: 4% 10%;
+    }
+   .main {
+     align-items: center;
+     justify-content: space-between;
+     flex-direction: inherit;
+     border-radius: 0px 0px 0px 0px;
+     width: 70%;
+     display: flex;
+     margin-right: 13vw;
+    }
+   .main__title {
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      margin-top: 4rem;
+      }
+/* carrucel---------------------------------------------------------------- */
+    #item1 {
+      margin-top: 15vh;
+      margin-left: 5vw;
+      font-family: sans-serif;
+      margin-bottom: 0;
+    }
+    .carousel {
+     overflow: hidden;
+     padding-left: 30px;
+     width: 100%;
+     position: relative;
+    }
+    .carousel__container {
+        /* transition: 450ms -webkit-transform;
+        transition: 450ms transform;
+        transition: 450ms transform, 450ms -webkit-transform; */
+        font-size: 0;
+        white-space: nowrap;
+        margin: 70px 0px;
+        padding-bottom: 10px;
+       }
+    /* .carousel__container:hover .carousel-item {
+       opacity: 0.3;
+      } */
+    .carousel-item {
+       border-radius: 20px;
+       overflow: hidden;
+       position: relative;
+       display: inline-block;
+       width: 18vw;
+       height: 250px;
+       margin-right: 10px;
+       font-size: 20px;
+       cursor: pointer;
+       transition: 450ms all;
+       -webkit-transform-origin: center left;
+       transform-origin: center left;
+     }
+    /* .carousel__container:hover .carousel-item:hover {
+       -webkit-transform: scale(1.3);
+       transform: scale(1.3);
+       opacity: 1;
+      } */
+    .carousel-item__img {
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+       border-radius: 10%;
+     }
+/* Descripción del producto----------------------------------- */
+     .descripción-producto {
+      padding: 8vh 6vw;
+      border: 1px solid black;
+      margin: 0 9vw 3vw;
+      border-radius: 10px;
+     }
+/* footer -------------------------------------------------------------- */
+   .footer {
+     background-color: black;
+     width: 100%;
+     height: 72px;
+     position: fixed;
+     bottom: 0;
+     display: flex;
+     justify-content: space-evenly;
+     align-items: center;
+    }
+    .footer a {color: white;
+      border: 1px solid;
+      padding: 9px;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      list-style: none;
+      }
+   @media screen and (max-width:838px) {
+   #logo {
+    font-size: 2em;
+    left: 1vw;
+    }
+
+/* buscador @media screen and (max-width:838px) -------------------------------------------------------------------- */
+   .main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70%;
+    }
+   .main__title {
+      color: white;
+      font-size: 25px;
+      margin-bottom: 1rem;
+      margin-top: 4rem;
+      vertical-align: text-top;
+      }
+
+    }
+/* carusel --------------------------------------------------------------------------- */
+   /* .carousel {
+     overflow: scroll;
+     position: relative;
+   } */
+
+
+   @media screen and (max-width: 580px) {
+/* buscador -------------------------------------------------------------------- */
+   .main__description--title {
+        font-size: 30px;
+      }
+   .busqueda {
+       background-color: white;
+     }
+  /* header--------------------------------------------------------------------- */
+   .header_menu_a_2{
+      font-size: 32px;
+    }
+    #logo {
+     font-size: 1.5em;
+     left: 1vw;
+     }
+     #logo {
+      font-size: 1.7em;
+      left: 3vw;
+      top: 2.2vh;
+      }
+   .header a{
+      font-size: 1em;
+      color: white;
+    }
+   .header ul {
+     position: fixed;
+     flex-direction: column;
+     top: 72px;
+     bottom: 0;
+     right: 75vw;
+     left: 0;
+     margin: 0;
+     padding-left: 0px;
+     display: none;
+     background-color: rgb(139, 0, 0, 0.3)
+    }
+   .header_menu_2 ul li {
+      margin-bottom: 10%;
+      margin-top: 0;
+    }
+   .iconos-menu {
+       color: white;
+       font-size: 5vh;
+       margin-bottom: 2%;
+     }
+   .burguer_button {
+      left: 82vw;
+    }
+/* carusel --------------------------------------------------------------------------- */
+      #item1 {
+        margin-top: 15vh;
+        margin-left: 5vw;
+        font-family: sans-serif;
+        margin-bottom: 3vh;
+      }
+      .carousel-item {
+         transform-origin: none;
+         width: 100vw;
+         height: 330px;
+         position: relative;
+         overflow: scroll;
+         border-radius: 0;
+      }
+      .carousel {
+        position: relative;
+        overflow: scroll;
+        padding-left: 5px;
+        box-sizing: border-box;
+       }
+      }
+      .carousel__container {
+         white-space: nowrap;
+         /* transition: 450ms transform, 450ms -webkit-transform; */
+         display: block;
+         margin: 0;
+       }
+       .carousel-item__img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 0;
+        }
+/* descripción---------------------------------- */
+      .descripción-producto {
+        padding: 0 6vw 3vw;
+        border: none;
+        margin: 0;
+        border-radius: 0;
+        font-family: sans-serif;
+      }
+/* bottom whatsapp--------------------------------------------------- */
+      #button-whatsapp {
+        bottom: 2vh;
+        font-family: sans-serif;
+         }
+  }
+  </style>
+  <body>
+    <header class="header" >
+       <div class="contenedor">
+         <span id="burguer-button" class="icon-user burguer_button"></span>
+         <figure >
+              <h1 id="logo">ketter</h1>
+           </figure>
+       </div>
+       <div class="contenedor">
+            <nav class="header_menu_2" id="menu">
+              <ul>
+                <span id="carritodecompras"class="icon-cart iconos-menu"></span>
+                <li>
+                  <a class="header_menu_a_2"href="Plazoleta.html">Carrito</a>
+                </li>
+                <span class="icon-credit-card iconos-menu"></span>
+                <li>
+                  <a class="header_menu_a_2" href="#nosotros">Metodos de pago</a>
+                </li>
+                <span class="icon-location2 iconos-menu"></span>
+                <li>
+                  <a class="header_menu_a_2" href="#productos">Ubicación</a>
+                </li>
+                 <span class="icon-calendar iconos-menu"></span>
+                 <li>
+                  <a class="header_menu_a_2" href="#contacto">Pedidos</a>
+                </li>
+              </ul>
+            </nav>
+       </div>
+       <div class="main">
+         <input type="text" class="input" placeholder="Buscar...">
+       </div>
+    </header>
+
+    <h2 id="item1" class="categorias">Ropa y accesorios</h2>
+
+    <section class="carousel">
+      <div class="carousel__container">
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/Ropa1.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/Ropa2.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/Ropa3.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/Ropa4.jpeg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img class="carousel-item__img" src="images/Ropa5.jpeg" alt="People">
+        </div>
+    </section>
+    <section class="bonton-whatsapp">
+       <a id="button-whatsapp" class="social_link whatsapp" href="https://wa.me/573058139553?text=Hola"></a>
+    </section>
+
+    <section class="descripción-producto">
+      <article class="project">
+                <div class="project_details">
+                <h3 class="nombre-pruducto">Reloj Inteligente</h3>
+                <h6 class="caracticas-pruducto">caracticas</h6>
+                <p class="precio"><small><strong>Antes:</strong>$ 80.000</small></p>
+                <p class="precio"><small><strong>Precio Final:</strong>$ 49.999 </small></p>
+                <p class="parrafo" width="200">Uso notiction:
+                    <br>1. Los dispositivos portátiles monitorizan las actividades humanas a través de sensores electrónicos, y están al nivel de electrónica del consumidor. Es normal una cierta desviación. El usuario debe tratar los datos de manera objetiva.
+                    <br>2. No compares con el equipo de hospital sobre la lectura, ¡no es un dispositivo médico!
+                    <br>3. Antes de usar, escanee el código QR en el manual para descargar la aplicación y conectarla al reloj con la aplicación.
+                    <br>4. Para el usuario de Android: Siempre autorice el acceso de la aplicación a todas las funciones del teléfono y siempre deje que funcione. Y enciende el GPS de tu teléfono antes de conectarlo.
+                    <br>5. Cárgalo durante 2-3 horas cuando lo recibas. Se agotó la potencia después de la larga entrega. ¡Gracias!
+                </p>
+                 <p class="parrafo"><br>Función:
+                    <br>Monitor de ritmo cardíaco
+                    <br>La presión arterial
+                    <br>De oxígeno en la sangre
+                    <br>Pasómetro
+                    <br>Deportes moder: Pasos, salto, situp
+                    <br>Rastreador de sueño
+                    <br>Calorías
+                    <br>Empujar un mensaje
+                    <br>Recordatorio de llamada
+                    <br>Reloj de alarma
+                    <br>Anti-Perdida
+                    <br>Control remoto
+                    <br>Los medios de comunicación Social de las notificaciones
+                    <br>Recordatorio de mensaje
+                  </p>
+                  <p class="parrafo"><br>Idioma de la aplicación: coreano, ruso, español, inglés, alemán, italiano, japonés, francés, chino
+                      Ver Idioma: Inglés</p>
+                  <p class="parrafo"><br>Especificación:
+                    <br>ESTILO: deporte
+                    <br>Material: de plástico
+                    <br>Tipo de pantalla: 1,3 pulgadas TFT 240*240
+                    <br>Banda desmontable.: Sí
+                    <br>Pantalla táctil: Sí
+                    <br>Compatibilidad: Compatible con
+                    <br>Bluetooth: 4,0
+                    <br>Batería: 90mAh
+                    <br>Tiempo en espera: entre 7 y 10 días aproximadamente
+                    <br>Tiempo de Trabajo: alrededor de 3-5 días
+                    <br>Sistema: IOS 9,0 y Android 5,0 arriba
+                    <br>Nombre de la APP: fitpro
+                  </p>
+
+
+                    <br>El paquete incluye:
+
+                    <br>1 * reloj inteligente (sin cargador en la caja)
+                    <br>1 * manual de usuario
+                    <br>1 * caja de venta al por menor
+
+                    <p class="parrafo">
+                    1. Hay una diferencia de 1-2cm según la medida manual. Comprueba la talla cuidadosamente antes de comprar el artículo.
+                    2. Ten en cuenta que puede haber una ligera diferencia de color debido a la luz y a la pantalla.
+                    3. Después de un largo transporte, algunos artículos pueden estar rotos. Si se rompe, contáctanos, te ofreceremos una respuesta satisfactoria.</p>
+                </div>
+                <figure class="projecto_imageContainer">
+              <img  width="500" src="images/platzi-video-react-native.png" alt="prouyecto del curso de React Native">
+              </article>
+    </section>
+
+
+
+    <footer class="footer">
+      <a href="Inicio/Inicio.html"> Agregar al carrito</a>
+    </footer>
+
+    <script src="interactividad.js"></script>
+  </body>
+</html>
